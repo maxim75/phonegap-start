@@ -8,6 +8,8 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.js"></script>
 
         <title>Geolocation.ws</title>
     </head>
@@ -32,8 +34,7 @@
 
 
         <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery.mobile.js"></script>
+        
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
@@ -68,8 +69,7 @@
             // onError Callback receives a PositionError object
             //
             function onError(error) {
-                alert('code: '    + error.code    + '\n' +
-                      'message: ' + error.message + '\n');
+                $("#date").text(new Date() + " " + error.message); 
             }
 
             
