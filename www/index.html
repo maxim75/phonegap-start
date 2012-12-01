@@ -4,28 +4,73 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        
+
+        <title>Geolocation.ws</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Geolocation</h1>
-            <p id="date"></p>
-            <div id="deviceready">
-                <p class="status pending blink">Connecting to Device</p>
-                <p class="status complete blink hide">Device is Ready</p>
-            </div>
-        </div>
+        
+
+        <div data-role="page">
+ 
+            <div data-role="header">
+                <h1>My Title</h1>
+            </div><!-- /header -->
+         
+            <div data-role="content">    
+                <p>Hello world</p>        
+                <img class="qr" />
+                <p id="date"></p>
+                <a id="goLink" href="http://www.geolocation.ws" data-role="button" data-inline="true">Go</a>
+             </div><!-- /content -->
+         
+        </div><!-- /page -->
 
 
 
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
 
-            setInterval(function() { $("#date").text(new Date()); }, 1000);
+            setInterval(function() { 
+                
+                navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            }, 1000);
+
+            // onSuccess Callback
+            //   This method accepts a `Position` object, which contains
+            //   the current GPS coordinates
+            //
+            var onSuccess = function(position) {
+
+                $("#date").text(position.coords.latitude + " " + position.coords.longitude); 
+                $("#goLink").attr("href", "http://www.geolocation.ws/nearby/en?loc=" + position.coords.latitude + "," + position.coords.longitude);
+
+                
+                /*
+                alert('Latitude: '          + position.coords.latitude          + '\n' +
+                      'Longitude: '         + position.coords.longitude         + '\n' +
+                      'Altitude: '          + position.coords.altitude          + '\n' +
+                      'Accuracy: '          + position.coords.accuracy          + '\n' +
+                      'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                      'Heading: '           + position.coords.heading           + '\n' +
+                      'Speed: '             + position.coords.speed             + '\n' +
+                      'Timestamp: '         + position.timestamp                + '\n');
+                */
+            };
+
+            // onError Callback receives a PositionError object
+            //
+            function onError(error) {
+                alert('code: '    + error.code    + '\n' +
+                      'message: ' + error.message + '\n');
+            }
 
             
 
