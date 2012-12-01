@@ -26,7 +26,7 @@
                 <p>Hello world</p>        
                 <img class="qr" />
                 <p id="date"></p>
-                <a id="goLink" href="http://www.geolocation.ws" data-role="button" data-inline="true">Go</a>
+                <a target="_blank" id="goLink" href="http://www.geolocation.ws" data-role="button" data-inline="true">Go</a>
              </div><!-- /content -->
          
         </div><!-- /page -->
@@ -38,6 +38,22 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
+
+            /*
+            $("#goLink").click(function(e) {
+                console.log(e);
+                //window.e = e;
+
+                if (app.isAndroid()) {
+                  navigator.app.loadUrl($(e.delegateTarget).attr("href"), { openExternal:true });
+                } else {
+                  window.location.href = url;
+                }
+
+                
+                return false;
+            });
+*/
 
             setInterval(function() { 
                 
